@@ -26,6 +26,9 @@ This package contains documentation only and has no runtime API or build step.
 Conventions live in this package. Framework usage and reference implementations link to the installed `@itrocks`
 packages.
 
+For package setup, builds, dependency checks and releases, use the
+[development tools guide](docs/framework-changes/development-tools.md).
+
 ## Documentation layout
 
 ```text
@@ -35,6 +38,7 @@ docs/
 │   └── coding-conventions.md
 ├── framework-changes/
 │   ├── README.md
+│   ├── development-tools.md
 │   ├── architecture/
 │   │   ├── README.md
 │   │   └── topic-specific guides

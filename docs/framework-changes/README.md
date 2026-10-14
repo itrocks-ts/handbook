@@ -14,3 +14,6 @@ For a new package, read [structure and build](architecture/package-structure-and
 README content and package metadata. Read coding conventions only if adding source.
 
 A local implementation change preserving existing contracts does not require architecture reading.
+
+For setup, rebuilds, dependency reviews and releases, see [development tools](development-tools.md).
+The full dependency audit is optional: consider it before a major release or run it at the developer's request.
