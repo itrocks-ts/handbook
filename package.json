@@ -1,0 +1,29 @@
+{
+	"author": {
+		"name": "Baptiste Pillot",
+		"email": "baptiste@pillot.fr"
+	},
+	"description": "Provides it.rocks framework usage and development guides for developers and AI agents",
+	"files": [
+		"AGENTS.md",
+		"LICENSE",
+		"README.md",
+		"docs"
+	],
+	"homepage": "https://it.rocks",
+	"keywords": [
+		"ai",
+		"conventions",
+		"development",
+		"documentation",
+		"guides",
+		"it.rocks"
+	],
+	"license": "ISC",
+	"name": "@itrocks/handbook",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/itrocks-ts/handbook.git"
+	},
+	"version": "0.0.1"
+}
