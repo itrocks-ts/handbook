@@ -27,7 +27,7 @@ Exclude `src/front` from the backend build. Mixed browser builds extend the base
 Use `@itrocks/prepare-module` where compiled browser subpaths must be copied to the root.
 
 Package metadata includes author, description, keywords, homepage, license, scoped name, repository and version.
-Start an unreleased package at `0.0.1`; do not bump existing versions incidentally.
+Start an unreleased package at `0.0.1`; follow [package versioning](../README.md#package-versioning) for existing packages.
 Use `itrocks-ts/<package>` for the repository and keep the license consistent with `LICENSE`.
 
 - Runtime imports belong in `dependencies`; internal packages use `latest`.

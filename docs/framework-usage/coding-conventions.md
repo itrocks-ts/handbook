@@ -1,6 +1,8 @@
 # Coding conventions
 
 Apply these rules to application and framework source, tests and development files.
+For framework packages, also apply [package versioning](../framework-changes/README.md#package-versioning)
+from the first file change.
 
 ## Layout and blocks
 
