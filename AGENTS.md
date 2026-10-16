@@ -12,6 +12,7 @@ If a task spans several categories, read each applicable guide.
 ## Development task completion
 
 End every development task on an application or framework package with a proposed commit message.
+Write proposed and authored commit messages in English for every development task.
 Keep it as short and concise as possible. Wherever possible, describe the change from the application or package
 user's perspective, using wording they can understand.
 Before writing it, inspect each affected Git repository's status and complete pending diff, including
