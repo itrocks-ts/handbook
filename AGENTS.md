@@ -19,8 +19,7 @@ If a task spans several categories, read each applicable guide.
 - For changes generated or modified by agents or subagents, add one trailer identifying contributing AI identity:
   `AI-assisted-by: <Agent tool> <AI name> <version> <model> <reasoning level>`
   (e.g. `AI-assisted-by: Codex GPT 6.1 sol high`). Capitalise the tool name.
-  Use the contributing agent's execution metadata: preserve the full model version, including minor/patch versions
-  and variant (e.g. `gpt-6.1-sol` becomes `GPT 6.1 sol`), and the actual reasoning level.
-  Do not infer these from the agent's self-description, a parent agent or a requested profile.
+  Preserve minor/patch versions when non-zero and the model variant. If necessary, retrieve these and the actual
+  reasoning level from the contributing agent's task metadata or session logs.
   Include only known fields; omit missing information without placeholders or explanatory comments.
   Keep human-only and AI-generated changes in separate commits where practical for targeted reviews.
