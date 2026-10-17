@@ -1,8 +1,26 @@
 # Coding conventions
 
-Apply these rules to application and framework source, tests and development files.
+Apply these rules to all development: application code, framework packages, other modules, tests and development files.
 For framework packages, also apply [package versioning](../framework-changes/README.md#package-versioning)
 from the first file change.
+
+## Design choices
+
+Before implementing a feature or fix, consider several ways to express the requested behaviour. Keep this comparison
+proportionate to the task; choose the KISS (Keep It Simple And Stupid) solution that meets the actual requirements:
+
+- Prefer a direct model of the behaviour, using the relevant events and state, over indirect calculations or heuristics.
+- Reuse existing behaviour and share the same algorithm between variants; make their actual differences explicit.
+- Minimise abstraction layers, preferably adding none. Introduce one only for a concrete current need that makes the
+  solution easier to understand or maintain.
+- Choose code that a beginner developer can reread and maintain, and whose operation is easy to explain to a human.
+  Prefer less code when correctness and readability are equivalent.
+- Apply SOLID through clear responsibilities, existing extension points, substitutable contracts, focused interfaces
+  and appropriate dependency boundaries. Each separation must serve the current behaviour and simplify maintenance.
+
+When fixing a bug, reconsider the model before adding another condition or special case. For example, column drag
+placement can remember the hovered column and react to changes of column and movement direction, instead of repeatedly
+inferring placement from position thresholds.
 
 ## Layout and blocks
 
