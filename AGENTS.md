@@ -16,10 +16,17 @@ If a task spans several categories, read each applicable guide.
   user perspective: user > functionality > developer. For purely technical changes, use simple and beginner-friendly
   developer language (KISS).
 - Cover all pending changes in each repository; for multiple commits, list each commit's files and shared-file hunks.
-- For changes generated or modified by agents or subagents, add one trailer identifying contributing AI identity:
-  `AI-assisted-by: <Agent tool> <AI name> <version> <model> <reasoning level>`
-  (e.g. `AI-assisted-by: Codex GPT 6.1 sol high`). Capitalise the tool name.
-  Preserve minor/patch versions when non-zero and the model variant. If necessary, retrieve these and the actual
-  reasoning level from the contributing agent's task metadata or session logs.
-  Include only known fields; omit missing information without placeholders or explanatory comments.
-  Keep human-only and AI-generated changes in separate commits where practical for targeted reviews.
+- For changes generated or modified by agents or subagents, add an `AI-assisted-by` trailer for each distinct
+  contributing agent identity:
+  `AI-assisted-by: <Agent tool> <tool version> <AI name> <AI version> <model variant> <reasoning level>`
+  (e.g. `AI-assisted-by: Codex 0.162.0-alpha.17.2 GPT 6.1 sol medium`). Capitalise the tool name.
+- Before proposing or authoring any commit, **read the contributing session's actual metadata or tool logs**.
+  This lookup is mandatory even when the system prompt provides a generic model name. Preserve the full tool version,
+  non-zero AI minor/patch versions, model variant and actual reasoning level; never infer them from defaults or examples.
+  For Codex, locate the session log using `CODEX_THREAD_ID` or `CODEX_SESSION_ID` under `$CODEX_HOME/sessions`
+  (default `~/.codex/sessions`). Read `session_meta.cli_version` and the contributing turns' `turn_context.model`
+  and `turn_context.effort`. Inspect each subagent's own session when it contributed changes.
+- Omit a field only after checking the corresponding metadata/logs and finding it unavailable. Never shorten a known
+  `gpt-6.1-sol` to `GPT-6`, or omit a known reasoning level. After committing, read back the stored commit message and
+  verify every trailer against the retrieved metadata. Keep unrelated log contents out of commit messages.
+- Keep human-only and AI-generated changes in separate commits where practical for targeted reviews.

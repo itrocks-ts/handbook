@@ -25,5 +25,5 @@
 		"type": "git",
 		"url": "git+https://github.com/itrocks-ts/handbook.git"
 	},
-	"version": "0.0.7"
+	"version": "0.0.8"
 }
