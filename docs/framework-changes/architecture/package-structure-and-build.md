@@ -17,6 +17,9 @@ Name the facade after the package unless `index.ts` is the intended public entry
 Use `build.ts` for browser registration and `transformers.ts` for transformer registration.
 Use separate CJS/ESM builds only when consumers require both; reference `route`.
 
+When creating a package, check the current project's `.idea/vcs.xml`. If it exists and lists `@itrocks` package
+repositories, add a Git mapping for the new package, following the existing path format and ordering.
+
 ## Compiler and publication
 
 Start from the closest reference package and remove unused options.
@@ -27,6 +30,8 @@ Exclude `src/front` from the backend build. Mixed browser builds extend the base
 Use `@itrocks/prepare-module` where compiled browser subpaths must be copied to the root.
 
 Package metadata includes author, description, keywords, homepage, license, scoped name, repository and version.
+For every new `@itrocks/*` package, set the
+[mandatory framework and scope keywords](../documentation/package-metadata.md#keywords) according to its scope.
 Start an unreleased package at `0.0.1`; follow [package versioning](../README.md#package-versioning) for existing packages.
 Use `itrocks-ts/<package>` for the repository and keep the license consistent with `LICENSE`.
 

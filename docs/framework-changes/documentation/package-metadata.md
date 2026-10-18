@@ -15,8 +15,15 @@ Avoid the package name, version claims, marketing adjectives and secondary featu
 ## Keywords
 
 Use unique, relevant search terms drawn from the package's capability, operations, platform and technologies.
-Include `it.rocks` for framework packages. Prefer 7–15 terms; relevance takes precedence over the count.
+Every `@itrocks/*` package must include `it.rocks` and at least one scope keyword in `package.json.keywords`:
+
+- `backend` for backend packages.
+- `front-end` for browser or user interface packages, including CSS-only packages.
+- Both `backend` and `front-end` for packages covering both scopes.
+
+Apply this rule systematically when creating a package or updating its scope.
+Prefer 7–15 terms; relevance takes precedence over the count.
 Use lowercase except established acronyms; sort alphabetically, ignoring case.
 Do not add vague terms, dependency inventories or spelling variants merely to increase the count.
 
-Parse the JSON and check description agreement, keyword uniqueness and ordering after editing.
+Parse the JSON and check description agreement, mandatory keywords, keyword uniqueness and ordering after editing.
