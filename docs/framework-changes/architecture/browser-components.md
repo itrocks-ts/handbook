@@ -4,7 +4,9 @@ Register independent DOM enhancements by selector with `build()`; use `HasPlugin
 extensions around a stable host API.
 
 `build()` handles matching elements in `document.body` and later insertions; it can also register prioritised listeners.
-Put registrations in an explicit browser build module imported by the browser entry or a template dependency.
+Put template-specific registrations in an explicit browser build module declared in the owning template's head.
+Follow [HTML templates and asset loading](html-templates-and-targets.md#fragments-and-assets);
+reserve browser-entry imports for shared infrastructure or necessary host context detection.
 Use semantic selectors and guard repeated activation when components do not already do so.
 Load heavy or optional behaviour inside the callback. Browser subpath imports use explicit `.js` extensions.
 Keep structure in HTML, behaviour in TypeScript and visual state in SCSS, sharing documented classes and attributes.
