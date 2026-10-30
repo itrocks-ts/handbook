@@ -22,7 +22,8 @@ Use the unscoped package name as the title, followed by the canonical descriptio
 
 ## Content selection
 
-Include only useful sections, in usage order:
+Follow the context order in [documentation conventions](markdown.md#content).
+Within each applicable context, include only useful sections, in usage order:
 
 - Actual prerequisites and installation: `npm i @itrocks/<package>`; use `--save-dev` for development tools.
 - Required concepts or initialisation order, then the smallest complete usage example and observable result.
