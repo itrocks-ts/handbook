@@ -17,6 +17,7 @@ proportionate to the task; choose the KISS (Keep It Simple And Stupid) solution 
   Prefer less code when correctness and readability are equivalent.
 - Apply SOLID through clear responsibilities, existing extension points, substitutable contracts, focused interfaces
   and appropriate dependency boundaries. Each separation must serve the current behaviour and simplify maintenance.
+- When a condition encloses the rest of a loop body, prefer an inverted `continue` guard to another indentation level.
 
 When fixing a bug, reconsider the model before adding another condition or special case. For example, column drag
 placement can remember the hovered column and react to changes of column and movement direction, instead of repeatedly
@@ -29,12 +30,47 @@ inferring placement from position thresholds.
   such as YAML.
 - Omit semicolons; use single quotes and template literals for interpolation or multiline text.
 - Space postfix operators: `index ++`, `index --`.
-- Align `from`, `=`, `:` and values in adjacent related lines where the limit allows.
+- Align `from`, `=`, `:`, `??` and values in adjacent related lines where the limit allows. Include mixed `const`/`let`
+  declarations, assignments and constructor parameters in the same alignment group; keep a space before each operator.
+- Declare one variable per statement. Separate preparation, object configuration and the final call or return with
+  blank lines when they form distinct steps.
 - Put `{` on the next line for classes, interfaces, functions, methods and constructors.
 - Keep `{` on the control line for conditions, loops, `switch`, `try`, `catch` and `finally`.
 - Put `else`, `catch` and `finally` on a new line after the preceding `}`.
-- Braces may be omitted for a single-line control body; multiline bodies require them.
+- Use braces and a separate body line for conditional returns. Otherwise prefer braces; very short flow guards such
+  as `if (condition) continue` may remain on one line.
+- For empty constructors, keep `{}` on the closing parameter line, including after a multiline parameter list.
 - Leave a blank line after a non-empty class opening brace and before its closing brace.
+
+## Wrapped expressions
+
+The 120-column limit is a maximum, not a target. Break dense expressions earlier when their structure is clearer.
+
+- For multiline control conditions, put `if (` on its own line, indent the condition once, and align `) {` with `if`.
+  Put leading `&&` and `||` on continuation lines at the same condition indentation.
+- Prefer a direct ternary return when choosing between two values. Keep only simple ternaries on one line; otherwise
+  put `?` and `:` on separate lines, one level below the return or assignment. Parenthesise concatenation branches.
+- For a ternary chain, align successive conditions and their results instead of increasing indentation for each case.
+- In multiline array and object literals, put one entry per line, including spreads and shorthand properties.
+  Break nested calls at argument boundaries and close each enclosing call at its corresponding indentation level.
+
+```ts
+if (
+	!path || !path.startsWith('/') || path.startsWith('//')
+	|| (new URL(path, origin).pathname !== path)
+) {
+	return ''
+}
+
+return (!prefix || path.startsWith(prefix + '/'))
+	? path
+	: (prefix + path)
+
+result =
+	isFunction(value) ? value(options)     :
+	isType(value)     ? new value(options) :
+	value
+```
 
 ## Signatures
 
@@ -71,7 +107,8 @@ function calculate(
 
 Sort homogeneous sequences alphabetically by stable name wherever order has no semantic significance.
 This includes configuration, documentation, object/array entries, declarations, members, imports, exports,
-parameters and test cases. Separate coherent kinds where useful, then sort within each group.
+parameters and test cases. Preserve existing responsibility groups, placing new members in their matching group,
+then sort within each group. Use short sentence-case section comments, preserving acronym capitals such as HTML and URL.
 Preserve required initialisation, side effects, fallback, precedence, lifecycle, overload, protocol and runtime order;
 comment non-obvious constraints.
 
