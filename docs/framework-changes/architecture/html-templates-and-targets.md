@@ -3,6 +3,9 @@
 Render valid standalone HTML and identify the fragment for asynchronous navigation.
 The action prepares a small named data context and owns business decisions.
 
+For the structure of new object views, lists, forms and structured modal content, follow
+[structured business views](../../framework-usage/structured-views.md).
+
 ## Authoring and validation
 
 Author page and fragment markup in HTML templates. Server actions prepare data; browser code enhances the rendered DOM.

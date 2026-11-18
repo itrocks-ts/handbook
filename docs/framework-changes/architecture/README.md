@@ -11,6 +11,7 @@ A package is a published `@itrocks/*` module; `HasPlugins` and `Plugin<T>` refer
 - Request, route, action, response or workflow: [actions and routes](requests-actions-and-routes.md).
 - Conversion or view metadata: [transformations and views](transformations-and-views.md).
 - Template, include, fragment or target: [HTML templates](html-templates-and-targets.md).
+- Business view, object form or structured modal: [structured views](../../framework-usage/structured-views.md).
 - DOM activation, navigation or browser plugin: [browser components](browser-components.md).
 - Selector, UI state, stylesheet or asset: [SCSS and assets](scss-and-assets.md).
 - Storage, relations, schema or database adapter: [persistence](persistence-and-schema.md).
