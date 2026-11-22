@@ -19,6 +19,18 @@ Name context-specific sections explicitly. Keep manual setup and adapter wiring 
 already supplies them. Put dependency binding details in [dependency documentation](dependencies.md), linked from
 the relevant context section.
 
+## AI authorship
+
+When AI writes a new document, add this notice near the top. In a package README, place it after the opening
+description. In supporting documentation, place it after the title.
+
+*This documentation was written by an artificial intelligence and may contain errors or approximations.
+It has not yet been fully reviewed by a human. If anything seems unclear or incomplete,
+please feel free to contact the author of this package.*
+
+When AI edits an existing document, keep any existing notice. If the document has no notice, assume it has been
+reviewed and approved by a human and leave the authorship unstated.
+
 ## Formatting
 
 - Limit source lines to 120 columns, including Markdown syntax. Only indivisible content such as URLs may exceed it.
