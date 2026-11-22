@@ -8,6 +8,8 @@ Paths below are relative to this package.
 - Update instructions or conventions for AI agents: [agent conventions](docs/agent-conventions/README.md).
 
 If a task spans several categories, read each applicable guide.
+For any front-end change, follow
+[interactive browser verification](docs/framework-changes/architecture/browser-components.md#interactive-browser-verification).
 
 ## Commits
 

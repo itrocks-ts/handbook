@@ -11,6 +11,16 @@ Use semantic selectors and guard repeated activation when components do not alre
 Load heavy or optional behaviour inside the callback. Browser subpath imports use explicit `.js` extensions.
 Keep structure in HTML, behaviour in TypeScript and visual state in SCSS, sharing documented classes and attributes.
 
+## Interactive browser verification
+
+Test every front-end change interactively in a browser before delivery. Exercise the complete affected workflows in
+the application, including related screens and actions that share the same UI. For business objects, follow the
+applicable paths through the list, record view, edit form and save, then reopen the record to check the result.
+
+Check that interactions work without errors, the workflow is easy to use, and the visible layout and behaviour
+match the requested design and the rest of the application. Check relevant viewport sizes and dynamic navigation.
+Use isolated test data when a workflow writes data. Builds and automated tests complement the interactive pass.
+
 ## Plugins and navigation
 
 A host extends `HasPlugins<Host>`, accepts `Partial<Options<Host>>`, establishes its base state, then calls
