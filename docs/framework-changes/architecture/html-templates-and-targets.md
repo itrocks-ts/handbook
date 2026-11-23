@@ -11,6 +11,9 @@ For the structure of new object views, lists, forms and structured modal content
 Author page and fragment markup in HTML templates. Server actions prepare data; browser code enhances the rendered DOM.
 Do not assemble view markup in TypeScript strings or construct entire views with DOM creation calls.
 
+Keep HTML nesting as shallow as possible and favour native semantic elements.
+Use CSS for layout and visual styling. Remove wrappers that serve only a visual purpose.
+
 The rendered standalone document and the DOM after fragment insertion must pass the
 [W3C Nu HTML Checker](https://validator.w3.org/nu/). Validate rendered output, with template expressions resolved,
 including conditional branches and representative dynamic values. Check source templates for valid HTML structure too.
