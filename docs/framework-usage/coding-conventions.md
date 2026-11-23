@@ -37,8 +37,9 @@ inferring placement from position thresholds.
 - Put `{` on the next line for classes, interfaces, functions, methods and constructors.
 - Keep `{` on the control line for conditions, loops, `switch`, `try`, `catch` and `finally`.
 - Put `else`, `catch` and `finally` on a new line after the preceding `}`.
-- Use braces and a separate body line for conditional returns. Otherwise prefer braces; very short flow guards such
-  as `if (condition) continue` may remain on one line.
+- An `if` or `else` body may stay on the same line without braces only if the line fits within 120 columns and the
+  body is a single control-flow exit, such as `break`, `continue` or a `return` of nothing, a variable or a literal.
+  Otherwise, use braces and start the body on the next line. In an `if`/`else` pair, use braces for both or neither.
 - For empty constructors, keep `{}` on the closing parameter line, including after a multiline parameter list.
 - Leave a blank line after a non-empty class opening brace and before its closing brace.
 
