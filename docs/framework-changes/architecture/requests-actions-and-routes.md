@@ -8,7 +8,7 @@ The URL shape is `/route[/ids][/action][/format]`; the request resolves the doma
 Default operations: collection `GET` → `list`, identified `GET` → `output`, `POST` → `save`, `DELETE` → `delete`.
 Declare explicit routes for other operations.
 
-- Configure destinations as module paths with optional `:ExportName`.
+- Configure destinations according to [module paths in YAML](dependency-composition.md#module-paths-in-yaml).
 - Use `@Route` for reusable action identity and link generation.
 - Extend `Action<T>` for format-specific operations (`html`, `json`, etc.); share domain work below those methods.
 - Return `htmlResponse`, `htmlTemplateResponse` or `jsonResponse`, not adapter-specific responses.

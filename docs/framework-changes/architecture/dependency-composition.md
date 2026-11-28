@@ -11,10 +11,35 @@ Bootstrap order: load layered configuration, install export composition, bind de
 then start servers. Avoid import-time metadata reads that freeze configuration before binding.
 
 Configuration merges in dependency order; application files override or extend it.
-Relative paths belong to the configuration file declaring them.
 Use `config.compose` and `@itrocks/compose` for import-compatible exported class replacement or `@Uses` augmentation.
 Keep replacement chains short and check order-dependent method and metadata resolution.
 Do not use export composition for ordinary function dependencies or browser `Plugin<T>` for server injection.
 
 References: `framework/src/dependencies.ts`, `framework/src/framework.ts`, `config/src/config.ts`,
 `compose/src/compose.ts`.
+
+## Module paths in YAML
+
+Use `.` for the entry point of the package declaring `config.yaml`, as resolved by Node.js from `package.json`.
+`'@'` is an alias for `.`. Use `':ExportName'` to select a named export directly from that entry point.
+Use a `./` path for another script in the same application or package and a package specifier for an external module.
+Point to the script that runs at runtime, such as a compiled file in `./cjs/` in a TypeScript package.
+
+In `routes` and `compose`, omit `:ExportName` when the script exposes a single class and the short form resolves
+to that class. Both resolvers prefer the default export. Without a default, routes select the first function or
+class and composition selects the first runtime export. Name the export when the short form would be ambiguous
+or select another value.
+
+```yaml
+compose:
+  '@itrocks/mysql:Mysql': './cjs/maintains'
+routes:
+  /counter: .
+```
+
+The `@itrocks/custom-list` entry point exports `CustomList`, so its `config.yaml` can refer to it directly.
+
+```yaml
+routes:
+  /custom-list: ':CustomList'
+```
