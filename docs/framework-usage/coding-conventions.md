@@ -78,8 +78,11 @@ The 120-column limit is a maximum, not a target. Break dense expressions earlier
   The assignment operator `=` is outside this rule. When assigning a condition, group only its logical parts.
 - For multiline control conditions, put `if (` on its own line, indent the condition once, and align `) {` with `if`.
   Put leading `&&` and `||` on continuation lines at the same condition indentation.
-- Prefer a direct ternary return when choosing between two values. Keep only simple ternaries on one line; otherwise
-  put `?` and `:` on separate lines, one level below the return or assignment. Parenthesise concatenation branches.
+- Prefer a direct ternary return when choosing between two values. As with single-line `if` branches, keep a ternary
+  on one line only if the line fits and both branches are simple values, such as an identifier, a literal, `[]` or
+  `{}`. A property access, a call or an expression with operators makes a branch complex. If either branch is
+  complex, start each branch on its own line with `?` or `:`, indented one level below the return or assignment.
+  Parenthesise concatenation branches.
 - In a ternary expression, parenthesise comparisons and binary logical operations (`&&` and `||`) in the condition
   or either branch, even when a single operator is used.
 - For a ternary chain, align successive conditions and their results instead of increasing indentation for each case.
@@ -98,6 +101,12 @@ if (
 	return ''
 }
 
+const items = found ? results : []
+
+return cached
+	? results
+	: loadResults()
+
 return (!prefix || path.startsWith(prefix + '/'))
 	? path
 	: (prefix + path)
@@ -106,10 +115,10 @@ return (status === 'active')
 	? (isOwner || isAdmin)
 	: false
 
-result =
-	isFunction(value) ? value(options)     :
-	isType(value)     ? new value(options) :
-	value
+kind =
+	isFunction(value) ? 'function' :
+	isType(value)     ? 'type'     :
+	'value'
 ```
 
 ## Signatures
