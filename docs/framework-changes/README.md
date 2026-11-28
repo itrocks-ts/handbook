@@ -26,6 +26,10 @@ When modifying a framework package, update its `package.json` version as soon as
 Choose the highest level required by the development: patch for fixes or documentation, minor for backwards-compatible
 features, major for breaking changes.
 
+Keep packages at major version `0` while they are in pre-1.0 development. For a breaking change, increment the minor
+version and reset the patch version to zero. For example, bump `0.0.2` to `0.1.0`. Move to `1.0.0` only when explicitly
+requested.
+
 First inspect `git diff HEAD -- package.json` in that package's repository, covering staged and unstaged changes.
 Compare the working version with `HEAD`: if it already contains an increment at the required level or higher, keep it.
 Otherwise, increment the required component from the `HEAD` version and reset lower components to zero.
