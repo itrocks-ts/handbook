@@ -25,6 +25,12 @@ Use `.` for the entry point of the package declaring `config.yaml`, as resolved 
 Use a `./` path for another script in the same application or package and a package specifier for an external module.
 Point to the script that runs at runtime, such as a compiled file in `./cjs/` in a TypeScript package.
 
+In file and module references, a single leading slash starts at `appDir`. Use two leading slashes to start at
+the filesystem root, for example `//var/lib/ticket/sessions` for the directory `/var/lib/ticket/sessions`.
+This applies to route destinations, both sides of `compose`, modules in `container.data`, `dataSource.engine`,
+`container.file`, `session.path` and top-level paths read through `configPath()`, such as `dataPath`.
+HTTP route keys and web asset URLs keep their URL semantics.
+
 In `routes` and `compose`, omit `:ExportName` when the script exposes a single class and the short form resolves
 to that class. Both resolvers prefer the default export. Without a default, routes select the first function or
 class and composition selects the first runtime export. Name the export when the short form would be ambiguous
