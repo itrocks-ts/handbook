@@ -30,32 +30,67 @@ inferring placement from position thresholds.
   such as YAML.
 - Omit semicolons; use single quotes and template literals for interpolation or multiline text.
 - Space postfix operators: `index ++`, `index --`.
-- Align `from`, `=`, `:`, `??` and values in adjacent related lines where the limit allows. Include mixed `const`/`let`
-  declarations, assignments and constructor parameters in the same alignment group; keep a space before each operator.
+- Align the variable names in consecutive `const` and `let` declarations at the same indentation level.
+  Use three spaces after `let` in a mixed group.
+- Align `from`, `=`, `:`, `??` and values in adjacent related lines where the limit allows. Align `=` only on
+  directly adjacent lines that contain the operator. A blank line, comment or continuation line without `=` ends the
+  alignment group. This applies to declarations, including typed declarations and type aliases, and to related
+  assignments. Align related constructor parameters as well. Pad with spaces and keep at least one before each operator.
 - Declare one variable per statement. Separate preparation, object configuration and the final call or return with
   blank lines when they form distinct steps.
 - Put `{` on the next line for classes, interfaces, functions, methods and constructors.
 - Keep `{` on the control line for conditions, loops, `switch`, `try`, `catch` and `finally`.
 - Put `else`, `catch` and `finally` on a new line after the preceding `}`.
-- An `if` or `else` body may stay on the same line without braces only if the line fits within 120 columns and the
-  body is a single control-flow exit, such as `break`, `continue` or a `return` of nothing, a variable or a literal.
-  Otherwise, use braces and start the body on the next line. In an `if`/`else` pair, use braces for both or neither.
+- An `if` or `else` may omit braces only if the entire line fits within 120 columns and its body is `break`,
+  `continue`, `return` alone or `return` followed by a variable or literal. Put every other body in braces. Place
+  the opening brace on the condition line, indent the body on the next line and put the closing brace on its
+  own line. This applies to `throw new Error(...)` and to a `return` that calls a function or computes a value.
+  In an `if`/`else` pair, use braces for both or neither.
 - For empty constructors, keep `{}` on the closing parameter line, including after a multiline parameter list.
 - Leave a blank line after a non-empty class opening brace and before its closing brace.
+
+```ts
+type Id    = number
+type Label = string
+
+let   count = 0
+const limit = 10
+
+const hasAccess = isPublic
+	|| (isMember && (status === 'active'))
+const label = getLabel()
+
+if (cached) return cached
+if (missing) {
+	throw new Error('Missing value')
+}
+if (count < limit) {
+	return loadValue()
+}
+```
 
 ## Wrapped expressions
 
 The 120-column limit is a maximum, not a target. Break dense expressions earlier when their structure is clearer.
 
+- In chained conditions, use parentheses around comparisons and around groups that must be evaluated together.
+  When mixing `&&` and `||`, show the intended precedence explicitly, even if it matches the language's default.
+  The assignment operator `=` is outside this rule. When assigning a condition, group only its logical parts.
 - For multiline control conditions, put `if (` on its own line, indent the condition once, and align `) {` with `if`.
   Put leading `&&` and `||` on continuation lines at the same condition indentation.
 - Prefer a direct ternary return when choosing between two values. Keep only simple ternaries on one line; otherwise
   put `?` and `:` on separate lines, one level below the return or assignment. Parenthesise concatenation branches.
+- In a ternary expression, parenthesise comparisons and binary logical operations (`&&` and `||`) in the condition
+  or either branch, even when a single operator is used.
 - For a ternary chain, align successive conditions and their results instead of increasing indentation for each case.
 - In multiline array and object literals, put one entry per line, including spreads and shorthand properties.
   Break nested calls at argument boundaries and close each enclosing call at its corresponding indentation level.
 
 ```ts
+if (isPublic || (isMember && (status === 'active'))) return
+
+const canRead = isPublic || (isMember && (status === 'active'))
+
 if (
 	!path || !path.startsWith('/') || path.startsWith('//')
 	|| (new URL(path, origin).pathname !== path)
@@ -66,6 +101,10 @@ if (
 return (!prefix || path.startsWith(prefix + '/'))
 	? path
 	: (prefix + path)
+
+return (status === 'active')
+	? (isOwner || isAdmin)
+	: false
 
 result =
 	isFunction(value) ? value(options)     :
@@ -106,14 +145,16 @@ function calculate(
 
 ## Ordering
 
-Sort homogeneous sequences alphabetically by stable name wherever order has no semantic significance.
+Sort homogeneous sequences alphabetically by stable name, ignoring case, wherever order has no semantic significance.
 This includes configuration, documentation, object/array entries, declarations, members, imports, exports,
 parameters and test cases. Preserve existing responsibility groups, placing new members in their matching group,
 then sort within each group. Use short sentence-case section comments, preserving acronym capitals such as HTML and URL.
 Preserve required initialisation, side effects, fallback, precedence, lifecycle, overload, protocol and runtime order;
 comment non-obvious constraints.
 
-Group module declarations as: types/interfaces, constants, `let`, functions, classes.
+Group module declarations as type aliases, interfaces, value declarations, functions, then classes. Sort both `const`
+and `let` by name within the same group. Sort exported and internal functions together by function name and keep each
+set of overloads with its implementation.
 
 For side-effect-free imports, locality precedes alphabetical order:
 

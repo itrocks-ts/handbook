@@ -17,6 +17,7 @@ For any front-end change, follow
 - Keep proposed and authored messages short and in English. Describe the behaviour change from the closest
   user perspective: user > functionality > developer. For purely technical changes, use simple and beginner-friendly
   developer language (KISS).
+- Omit details already clear from the context, such as the package name in a commit to that package's repository.
 - Cover all pending changes in each repository; for multiple commits, list each commit's files and shared-file hunks.
 - For changes generated or modified by agents or subagents, add an `AI-assisted-by` trailer for each distinct
   contributing agent identity:
